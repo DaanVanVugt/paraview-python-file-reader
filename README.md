@@ -77,6 +77,9 @@ ln -s libhdf5_hl.so.8.0.2 libhdf5_hl.so.8
 rm -r ~/hdf5-1.8.13.tar.bz2 ~/hdf5-1.8.13
 ```
 
+## Known version numbers
+
+* ParaView 5.6.0: numpy==1.15.1, hdf5==1.8.13, python2 with ucs4
 
 
 ## Known issues
