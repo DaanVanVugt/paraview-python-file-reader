@@ -84,6 +84,9 @@ rm -r ~/hdf5-1.8.13.tar.bz2 ~/hdf5-1.8.13
 
 ## Known issues
 
+### Mismatch in library and header version
+Sometimes the h5py installer does not correctly find the hdf5 version number. In that case you can set the HDF5_VERSION enviroment variable (to something like 1.8.13 depending on your version)
+
 ### ImportError
 If you get an error like
 ```
