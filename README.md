@@ -48,11 +48,11 @@ pyenv local 2.7.11
 # Install pip
 wget https://bootstrap.pypa.io/get-pip.py && ~/.pyenv/shims/python get-pip.py
 
-# Install the same numpy paraview uses (as of writing)
+# Install the same numpy paraview uses (as of writing, for 5.2 - 5.5.2)
 ~/.pyenv/versions/2.7.11/bin/pip install --user numpy==1.8.1
 
 # Install hdf5 of the same version as paraview (not enough files included in binary paraview distribution to build against)
-# Paraview 5.2 - 5.4.1 are using 1.8.13, I have not checked the rest
+# Paraview 5.2 - 5.5.2 are using 1.8.13, I have not checked the rest
 # We then take the install summary 
 cd ~
 wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.13/src/hdf5-1.8.13.tar.bz2
@@ -79,6 +79,7 @@ rm -r ~/hdf5-1.8.13.tar.bz2 ~/hdf5-1.8.13
 
 ## Known version numbers
 
+* ParaView 5.5.2: numpy==1.8.1, hdf5==1.8.13, python2.7.14 with ucs2
 * ParaView 5.6.0: numpy==1.15.1, hdf5==1.8.13, python2 with ucs4
 
 
