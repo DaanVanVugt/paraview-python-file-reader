@@ -37,9 +37,9 @@ HDF5 is a common format for
 
 ```bash
 export PV_PY_VER=2.7.11
+export PV_PY_UCS=2
 export PV_NP_VER=1.8.1
 export PV_H5_VER=1.8.13
-export PV_PY_UCS=2
 
 export PYTHON_CONFIGURE_OPTS=--enable-unicode=ucs$PV_PY_UCS
 # Install python2 with ucs2 https://stackoverflow.com/questions/38928942/build-python-as-ucs-4-via-pyenv
@@ -49,8 +49,9 @@ pyenv local $PV_PY_VER
 # Install pip
 wget https://bootstrap.pypa.io/get-pip.py && ~/.pyenv/versions/$PV_PY_VER/python get-pip.py
 
-# Install the same numpy paraview uses
-~/.pyenv/versions/$PV_PY_VER/bin/pip install --user numpy==$PV_NP_VER cython==0.29
+# Install the same numpy paraview uses and a not too recent cython
+~/.pyenv/versions/$PV_PY_VER/bin/pip uninstall -y numpy cython
+~/.pyenv/versions/$PV_PY_VER/bin/pip install --ignore-installed --user numpy==$PV_NP_VER cython==0.29
 
 # Install hdf5 of the same version as paraview (not enough files included in binary paraview distribution to build against)
 export PV_H5_MJ_VER=${PV_H5_VER%.*}
@@ -63,6 +64,7 @@ make install
 
 # Install h5py against theis hdf5 library
 export HDF5_DIR=`pwd`/hdf5
+~/.pyenv/versions/$PV_PY_VER/bin/pip uninstall -y h5py
 ~/.pyenv/versions/$PV_PY_VER/bin/pip install --no-binary=h5py --user h5py
 ```
 
@@ -80,6 +82,9 @@ You can fill in the version numbers below for your specific version of ParaView.
 
 ### Mismatch in library and header version
 Sometimes the h5py installer does not correctly find the hdf5 version number. In that case you can set the HDF5_VERSION enviroment variable (to something like 1.8.13 depending on your version)
+
+### h5py failed to build
+`Cython` 0.30a is known not to work. Additionally you can run the `pip install h5py` in verbose mode with `-vvv`
 
 ### ImportError
 If you get an error like
